@@ -6,6 +6,10 @@ app = Flask(__name__)
 with open('sentiment_model_v1.pkl', 'rb') as fp:
   model = pickle.load(fp)
 
+@app.route('/')
+def root():
+  return {'alive': 'yep'}
+
 @app.route('/api', methods=['POST'])
 def sentiment_api():
   prompt = request.json['sentiment']
